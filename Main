@@ -2,7 +2,7 @@ import javax.swing.*;
 
 /**
  * Created by Joey C on 11/30/2015.
- * Version 0.0.0.4
+ * Version 0.0.0.5
  */
 public class Main {
 
@@ -49,9 +49,17 @@ public class Main {
     }
     //required options within menu
     private static void Field() {
-        int bet;
+        int bet=0;
         int winnings = 0;
-        bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Field",-1));
+        int x=0;
+        while(x==0){
+            try {
+                bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Field",-1));
+                x=1;
+            }catch (NumberFormatException e){
+
+            }
+        }
         if (SufficentFunds(bet) == true) {
             int roll1 = rolldice(1);
             int roll2 = rolldice(1);
@@ -72,9 +80,17 @@ public class Main {
         }
     }
     private static void Small() {
-        int bet;
+        int bet=0;
         int winnings = 0;
-        bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Small",-1));
+        int x=0;
+        while(x==0){
+            try {
+                bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Small",-1));
+                x=1;
+            }catch (NumberFormatException e){
+
+            }
+        }
         if (SufficentFunds(bet) == true) {
 
             int roll1 = rolldice(1);
@@ -97,9 +113,17 @@ public class Main {
         }
     }
     private static void Big() {
-        int bet;
+        int bet=0;
         int winnings = 0;
-        bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Big",-1));
+        int x=0;
+        while(x==0){
+            try {
+                bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Big",-1));
+                x=1;
+            }catch (NumberFormatException e){
+
+            }
+        }
         if (SufficentFunds(bet) == true) {
 
             int roll1 = rolldice(1);
@@ -121,9 +145,18 @@ public class Main {
         }
     }
     private static void AnyTriple() {
-        int bet;
+        int bet=0;
         int winnings = 0;
-        bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Any Triple",-1));
+
+        int x=0;
+        while(x==0){
+            try {
+                bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Any Triple",-1));
+                x=1;
+            }catch (NumberFormatException e){
+
+            }
+        }
         if (SufficentFunds(bet) == true) {
 
             int roll1 = rolldice(1);
@@ -146,12 +179,28 @@ public class Main {
     }
     private static void DiceBet() {
         boolean triple = false;
-        int bet;
-        int side;
+        int bet=0;
+        int side=-1;
         int winnings = 0;
-        bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Dice Bet",-1));
-        side = Integer.parseInt(JOptionPane.showInputDialog(null,"Side to bet on(1-6): ","Dice Bet",-1));
-        if (SufficentFunds(bet) == true) {
+
+        int x=0;
+        while(x==0){
+            try {
+                bet = Integer.parseInt(JOptionPane.showInputDialog(null, "Amount of bet(1-100): ", "Dice Bet", -1));
+                x=1;
+            }catch (NumberFormatException e){
+
+            }
+        }
+        x=0;
+        while(x==0){
+            try {
+                side = Integer.parseInt(JOptionPane.showInputDialog(null,"Side to bet on(1-6): ","Dice Bet",-1));
+                x=1;
+            }catch (NumberFormatException e){
+
+            }
+        } if (SufficentFunds(bet) == true) {
 
 
             int roll1 = rolldice(1);
@@ -184,7 +233,7 @@ public class Main {
         try {
             totalBalance += Integer.parseInt(JOptionPane.showInputDialog(null, "How much would you like to add to balance: ", "Add to Balance", -1));
         }catch (NumberFormatException e){
-            
+
         }
     }
     private static void Balance() {
