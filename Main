@@ -1,0 +1,180 @@
+import javax.swing.*;
+
+/**
+ * Created by Joey C on 11/30/2015.
+ *Version 0.0.0.0
+ */
+public class Main {
+    private static int totalbalance=100;
+
+    public static void main(String arg[]) {
+        int choice;
+        choice = menu();
+        while(choice!=-1){
+            //code
+
+            if(choice==1) {
+                DiceBet();
+            }
+            else if(choice==2) {
+                AnyTriple();
+            }
+            else if(choice==3) {
+                Big();
+            }
+            else if(choice==4){
+                Small();
+            }
+            else if(choice==5){
+                Field();
+            }
+            else if(choice==6){
+                System.exit(0);
+            }
+            else if(choice==7)
+                Balance();
+            choice=menu();
+        }
+    }
+
+    private static void Balance() {
+        JOptionPane.showMessageDialog(null,totalbalance);
+    }
+
+    private static void Field() {
+        int bet;
+        int winnings=0;
+        bet=Integer.parseInt(JOptionPane.showInputDialog("Amount of bet(1-100): "));
+        int roll1=rolldice(1);
+        int roll2=rolldice(1);
+        int roll3=rolldice(1);
+
+        System.out.println(roll1+" "+roll2+" "+roll3);
+
+        if(roll1+roll2+roll3<=9&&roll1+roll2+roll3>=12)
+            winnings+=bet;
+        else
+            winnings-=bet;
+
+        if(winnings>=0)
+            JOptionPane.showMessageDialog(null,"You won $"+winnings);
+        else
+            JOptionPane.showMessageDialog(null,"You lost $"+Math.abs(winnings));
+        totalbalance+=winnings;
+    }
+
+    private static void Small() {
+        int bet;
+        int winnings=0;
+        bet=Integer.parseInt(JOptionPane.showInputDialog("Amount of bet(1-100): "));
+        int roll1=rolldice(1);
+        int roll2=rolldice(1);
+        int roll3=rolldice(1);
+
+        System.out.println(roll1+" "+roll2+" "+roll3);
+
+        if(roll1+roll2+roll3<9)
+            winnings+=bet;
+        else
+            winnings-=bet;
+
+        if(winnings>=0)
+            JOptionPane.showMessageDialog(null,"You won $"+winnings);
+        else
+            JOptionPane.showMessageDialog(null,"You lost $"+Math.abs(winnings));
+        totalbalance+=winnings;
+
+    }
+
+    private static void Big() {
+        int bet;
+        int winnings=0;
+        bet=Integer.parseInt(JOptionPane.showInputDialog("Amount of bet(1-100): "));
+        int roll1=rolldice(1);
+        int roll2=rolldice(1);
+        int roll3=rolldice(1);
+
+        System.out.println(roll1+" "+roll2+" "+roll3);
+
+        if(roll1+roll2+roll3>=12)
+            winnings+=bet;
+        else
+            winnings-=bet;
+
+        if(winnings>=0)
+            JOptionPane.showMessageDialog(null,"You won $"+winnings);
+        else
+            JOptionPane.showMessageDialog(null,"You lost $"+Math.abs(winnings));
+        totalbalance+=winnings;
+
+    }
+
+    private static void AnyTriple() {
+        int bet;
+        int winnings=0;
+        bet=Integer.parseInt(JOptionPane.showInputDialog("Amount of bet(1-100): "));
+        int roll1=rolldice(1);
+        int roll2=rolldice(1);
+        int roll3=rolldice(1);
+
+        System.out.println(roll1+" "+roll2+" "+roll3);
+        if(roll1==roll2&&roll2==roll3)
+            winnings+=(bet*30);
+        else
+            winnings-=bet;
+
+        if(winnings>=0)
+            JOptionPane.showMessageDialog(null,"You won $"+winnings);
+        else
+            JOptionPane.showMessageDialog(null,"You lost $"+Math.abs(winnings));
+
+        totalbalance+=winnings;
+
+    }
+
+    private static void DiceBet() {
+        boolean triple=false;
+        int bet;
+        int side;
+        int winnings=0;
+        bet=Integer.parseInt(JOptionPane.showInputDialog("Amount of bet(1-100): "));
+        side=Integer.parseInt(JOptionPane.showInputDialog("Side to bet on(1-6): "));
+
+        int roll1=rolldice(1);
+        int roll2=rolldice(1);
+        int roll3=rolldice(1);
+
+        System.out.println(roll1+" "+roll2+" "+roll3);
+        if(roll1==roll2&&roll2==roll3) {
+            winnings += (bet * 10);
+            triple=true;
+        }
+        else if(roll1==side&&triple!=true)
+            winnings+=bet;
+        else if(roll2==side&&triple!=true)
+            winnings+=bet;
+        else if(roll3==side&&triple!=true)
+            winnings+=bet;
+        else if(winnings==0&&triple!=true)
+            winnings-=bet;
+
+        if(winnings>=0)
+            JOptionPane.showMessageDialog(null,"You won $"+winnings);
+        else
+            JOptionPane.showMessageDialog(null,"You lost $"+Math.abs(winnings));
+        totalbalance+=winnings;
+    }
+
+    private static int rolldice(int a) {
+        a = (int) (Math.random()*6+1);
+        return a;
+    }
+
+    private static int menu() {
+
+            String s =JOptionPane.showInputDialog("1. Dice bet \n2. Any triple \n3. Big\n4. Small\n5.Field\n6. Exit\n7. Balance");
+            return Integer.parseInt(s);
+    }
+}
+
+
