@@ -2,7 +2,7 @@ import javax.swing.*;
 
 /**
  * Created by Joey C on 11/30/2015.
- * Version 0.0.0.3
+ * Version 0.0.0.4
  */
 public class Main {
 
@@ -15,7 +15,7 @@ public class Main {
                 "        ------------------------");
         int choice;
         choice = menu();
-        while(choice!=-1){
+        while(choice!=0){
 
 
             if(choice==1) {
@@ -181,7 +181,11 @@ public class Main {
 
     //additional options within menu
     private static void AddToBalance() {
-        totalBalance+=Integer.parseInt(JOptionPane.showInputDialog(null,"How much would you like to add to balance: ","Add to Balance",-1));
+        try {
+            totalBalance += Integer.parseInt(JOptionPane.showInputDialog(null, "How much would you like to add to balance: ", "Add to Balance", -1));
+        }catch (NumberFormatException e){
+            
+        }
     }
     private static void Balance() {
         JOptionPane.showMessageDialog(null,totalBalance,"Balance",-1);
@@ -201,12 +205,18 @@ public class Main {
 
     //menu method
     private static int menu() {
+        try {
 
-            String s =JOptionPane.showInputDialog(null,"Please select one of the following:"+
-                    "\n1. Dice bet \n2. Any triple \n3. Big\n4. Small\n5.Field\n6. Exit\n7. Balance\n8. Add To balance","Chuck-a-luck"
-                    ,-1);
+            String s = JOptionPane.showInputDialog(null, "Please select one of the following:" +
+                            "\n1. Dice bet \n2. Any triple \n3. Big\n4. Small\n5.Field\n6. Exit\n7. Balance\n8. Add To balance", "Chuck-a-luck"
+                    , -1);
             return Integer.parseInt(s);
+
+
+        } catch (NumberFormatException e) {return -1;
+
+        }
     }
-}
+    }
 
 
