@@ -2,11 +2,11 @@ import javax.swing.*;
 
 /**
  * Created by Joey C on 11/30/2015.
- * Version 0.0.0.5
+ * Version 0.0.0.6
  */
 public class Main {
 
-    private static int totalBalance=100;
+    private static int totalBalance = 100;
 
     public static void main(String arg[]) {
         System.out.println("                                                                 " +
@@ -15,48 +15,51 @@ public class Main {
                 "        ------------------------");
         int choice;
         choice = menu();
-        while(choice!=0){
 
+        while (choice != 0) {
 
-            if(choice==1) {
-                DiceBet();
+            switch (choice) {
+                case 1:
+                    DiceBet();
+                    break;
+                case 2:
+                    AnyTriple();
+                    break;
+                case 3:
+                    Big();
+                    break;
+                case 4:
+                    Small();
+                    break;
+                case 5:
+                    Field();
+                    break;
+                case 6:
+                    ExitVerification();
+                    break;
+                case 7:
+                    Balance();
+                    break;
+                case 8:
+                    AddToBalance();
+                    break;
+
             }
-            else if(choice==2) {
-                AnyTriple();
-            }
-            else if(choice==3) {
-                Big();
-            }
-            else if(choice==4){
-                Small();
-            }
-            else if(choice==5){
-                Field();
-            }
-            else if(choice==6){
-                System.out.print("\n\n                                                                          ------------------\n" +
-                        "                                                                          Thanks for Playing\n" +
-                        "                                                                          ------------------");
-                System.exit(0);
-            }
-            else if(choice==7) {
-                Balance();
-            }
-            else if(choice==8)
-                AddToBalance();
-            choice=menu();
+            choice = menu();
         }
     }
+
+
     //required options within menu
     private static void Field() {
-        int bet=0;
+        int bet = 0;
         int winnings = 0;
-        int x=0;
-        while(x==0){
+        int x = 0;
+        while (x == 0) {
             try {
-                bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Field",-1));
-                x=1;
-            }catch (NumberFormatException e){
+                bet = Integer.parseInt(JOptionPane.showInputDialog(null, "Amount of bet(1-100): ", "Field", -1));
+                x = 1;
+            } catch (NumberFormatException e) {
 
             }
         }
@@ -72,22 +75,25 @@ public class Main {
             else
                 winnings -= bet;
 
+
             if (winnings >= 0)
-                JOptionPane.showMessageDialog(null, "You won $" + winnings);
+                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings);
             else
-                JOptionPane.showMessageDialog(null, "You lost $" + Math.abs(winnings));
+                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings));
+
             totalBalance += winnings;
         }
     }
+
     private static void Small() {
-        int bet=0;
+        int bet = 0;
         int winnings = 0;
-        int x=0;
-        while(x==0){
+        int x = 0;
+        while (x == 0) {
             try {
-                bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Small",-1));
-                x=1;
-            }catch (NumberFormatException e){
+                bet = Integer.parseInt(JOptionPane.showInputDialog(null, "Amount of bet(1-100): ", "Small", -1));
+                x = 1;
+            } catch (NumberFormatException e) {
 
             }
         }
@@ -104,23 +110,26 @@ public class Main {
             else
                 winnings -= bet;
 
+
             if (winnings >= 0)
-                JOptionPane.showMessageDialog(null, "You won $" + winnings);
+                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings);
             else
-                JOptionPane.showMessageDialog(null, "You lost $" + Math.abs(winnings));
+                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings));
+
             totalBalance += winnings;
 
         }
     }
+
     private static void Big() {
-        int bet=0;
+        int bet = 0;
         int winnings = 0;
-        int x=0;
-        while(x==0){
+        int x = 0;
+        while (x == 0) {
             try {
-                bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Big",-1));
-                x=1;
-            }catch (NumberFormatException e){
+                bet = Integer.parseInt(JOptionPane.showInputDialog(null, "Amount of bet(1-100): ", "Big", -1));
+                x = 1;
+            } catch (NumberFormatException e) {
 
             }
         }
@@ -137,23 +146,26 @@ public class Main {
             else
                 winnings -= bet;
 
+
             if (winnings >= 0)
-                JOptionPane.showMessageDialog(null, "You won $" + winnings);
+                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings);
             else
-                JOptionPane.showMessageDialog(null, "You lost $" + Math.abs(winnings));
+                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings));
+
             totalBalance += winnings;
         }
     }
+
     private static void AnyTriple() {
-        int bet=0;
+        int bet = 0;
         int winnings = 0;
 
-        int x=0;
-        while(x==0){
+        int x = 0;
+        while (x == 0) {
             try {
-                bet = Integer.parseInt(JOptionPane.showInputDialog(null,"Amount of bet(1-100): ","Any Triple",-1));
-                x=1;
-            }catch (NumberFormatException e){
+                bet = Integer.parseInt(JOptionPane.showInputDialog(null, "Amount of bet(1-100): ", "Any Triple", -1));
+                x = 1;
+            } catch (NumberFormatException e) {
 
             }
         }
@@ -163,44 +175,46 @@ public class Main {
             int roll2 = rolldice(1);
             int roll3 = rolldice(1);
 
-        //System.out.println(roll1 + " " + roll2 + " " + roll3);
-        if (roll1 == roll2 && roll2 == roll3)
-            winnings += (bet * 30);
-        else
-            winnings -= bet;
+            //System.out.println(roll1 + " " + roll2 + " " + roll3);
+            if (roll1 == roll2 && roll2 == roll3)
+                winnings += (bet * 30);
+            else
+                winnings -= bet;
 
-        if (winnings >= 0)
-            JOptionPane.showMessageDialog(null, "You won $" + winnings);
-        else
-            JOptionPane.showMessageDialog(null, "You lost $" + Math.abs(winnings));
+            if (winnings >= 0)
+                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings);
+            else
+                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings));
 
-        totalBalance += winnings;
+            totalBalance += winnings;
         }
     }
+
     private static void DiceBet() {
         boolean triple = false;
-        int bet=0;
-        int side=-1;
+        int bet = 0;
+        int side = -1;
         int winnings = 0;
 
-        int x=0;
-        while(x==0){
+        int x = 0;
+        while (x == 0) {
             try {
                 bet = Integer.parseInt(JOptionPane.showInputDialog(null, "Amount of bet(1-100): ", "Dice Bet", -1));
-                x=1;
-            }catch (NumberFormatException e){
+                x = 1;
+            } catch (NumberFormatException e) {
 
             }
         }
-        x=0;
-        while(x==0){
+        x = 0;
+        while (x == 0) {
             try {
-                side = Integer.parseInt(JOptionPane.showInputDialog(null,"Side to bet on(1-6): ","Dice Bet",-1));
-                x=1;
-            }catch (NumberFormatException e){
+                side = Integer.parseInt(JOptionPane.showInputDialog(null, "Side to bet on(1-6): ", "Dice Bet", -1));
+                x = 1;
+            } catch (NumberFormatException e) {
 
             }
-        } if (SufficentFunds(bet) == true) {
+        }
+        if (SufficentFunds(bet) == true) {
 
 
             int roll1 = rolldice(1);
@@ -221,9 +235,10 @@ public class Main {
                 winnings -= bet;
 
             if (winnings >= 0)
-                JOptionPane.showMessageDialog(null, "You won $" + winnings);
+                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings);
             else
-                JOptionPane.showMessageDialog(null, "You lost $" + Math.abs(winnings));
+                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings));
+
             totalBalance += winnings;
         }
     }
@@ -232,15 +247,17 @@ public class Main {
     private static void AddToBalance() {
         try {
             totalBalance += Integer.parseInt(JOptionPane.showInputDialog(null, "How much would you like to add to balance: ", "Add to Balance", -1));
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
 
         }
     }
+
     private static void Balance() {
-        JOptionPane.showMessageDialog(null,totalBalance,"Balance",-1);
+        JOptionPane.showMessageDialog(null, totalBalance, "Balance", -1);
     }
-    private static boolean SufficentFunds(int bet){
-        if(totalBalance-bet>=0)
+
+    private static boolean SufficentFunds(int bet) {
+        if (totalBalance - bet >= 0)
             return true;
         else
             return false;
@@ -248,24 +265,39 @@ public class Main {
 
     //sub method within options
     private static int rolldice(int a) {
-        a = (int) (Math.random()*6+1);
+        a = (int) (Math.random() * 6 + 1);
         return a;
+    }
+
+    private static void ExitVerification() {
+        try {
+            int s = Integer.parseInt(JOptionPane.showInputDialog(null, "Are you sure?:\n1.Yes\n2.No", "2"));
+            if (s == 1) {
+                System.out.print("\n\n                                                                       ------------------------\n" +
+                        "                                                                          Thanks for playing\n                                                                       ------------------------");
+                System.exit(0);
+            }
+        } catch (NumberFormatException e) {
+
+        }
+
     }
 
     //menu method
     private static int menu() {
         try {
 
-            String s = JOptionPane.showInputDialog(null, "Please select one of the following:" +
+            String s = JOptionPane.showInputDialog(null, "Please select one of the following: " +
                             "\n1. Dice bet \n2. Any triple \n3. Big\n4. Small\n5.Field\n6. Exit\n7. Balance\n8. Add To balance", "Chuck-a-luck"
                     , -1);
             return Integer.parseInt(s);
 
 
-        } catch (NumberFormatException e) {return -1;
+        } catch (NumberFormatException e) {
+            return -1;
 
         }
     }
-    }
+}
 
 
