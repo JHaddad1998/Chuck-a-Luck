@@ -2,11 +2,12 @@ import javax.swing.*;
 
 /**
  * Created by Joey C on 11/30/2015.
- * Version 0.0.0.6
+ * Version 0.0.0.7
  */
 public class Main {
+    private static int totalInitial = 100;
 
-    private static int totalBalance = 100;
+    private static int totalBalance = totalInitial;
 
     public static void main(String arg[]) {
         System.out.println("                                                                 " +
@@ -70,18 +71,24 @@ public class Main {
 
             //System.out.println(roll1 + " " + roll2 + " " + roll3);
 
-            if (roll1 + roll2 + roll3 <= 9 && roll1 + roll2 + roll3 >= 12)
-                winnings += bet;
-            else
-                winnings -= bet;
+            totalBalance += winnings;
 
+            int profit= totalBalance-totalInitial;
+            String s;
+            if(profit>0){
+                s = "You won a total of: ";
+            }
+            else if (profit<0){
+                s = "You lost a total of: ";
+            }
+            else
+                s = "You broke even";
 
             if (winnings >= 0)
-                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings);
+                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings+"\n"+s+Math.abs(profit));
             else
-                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings));
+                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings)+"\n"+s+Math.abs(profit));
 
-            totalBalance += winnings;
         }
     }
 
@@ -111,12 +118,23 @@ public class Main {
                 winnings -= bet;
 
 
-            if (winnings >= 0)
-                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings);
-            else
-                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings));
-
             totalBalance += winnings;
+
+            int profit= totalBalance-totalInitial;
+            String s;
+            if(profit>0){
+                s = "You won a total of: ";
+            }
+            else if (profit<0){
+                s = "You lost a total of: ";
+            }
+            else
+                s = "You broke even";
+
+            if (winnings >= 0)
+                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings+"\n"+s+Math.abs(profit));
+            else
+                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings)+"\n"+s+Math.abs(profit));
 
         }
     }
@@ -147,12 +165,24 @@ public class Main {
                 winnings -= bet;
 
 
-            if (winnings >= 0)
-                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings);
-            else
-                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings));
-
             totalBalance += winnings;
+
+            int profit= totalBalance-totalInitial;
+            String s;
+            if(profit>0){
+                s = "You won a total of: ";
+            }
+            else if (profit<0){
+                s = "You lost a total of: ";
+            }
+            else
+                s = "You broke even";
+
+            if (winnings >= 0)
+                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings+"\n"+s+Math.abs(profit));
+            else
+                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings)+"\n"+s+Math.abs(profit));
+
         }
     }
 
@@ -181,12 +211,24 @@ public class Main {
             else
                 winnings -= bet;
 
-            if (winnings >= 0)
-                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings);
-            else
-                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings));
-
             totalBalance += winnings;
+
+            int profit= totalBalance-totalInitial;
+            String s;
+            if(profit>0){
+                s = "You won a total of: ";
+            }
+            else if (profit<0){
+                s = "You lost a total of: ";
+            }
+            else
+                s = "You broke even";
+
+            if (winnings >= 0)
+                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings+"\n"+s+Math.abs(profit));
+            else
+                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings)+"\n"+s+Math.abs(profit));
+
         }
     }
 
@@ -205,7 +247,9 @@ public class Main {
 
             }
         }
-        x = 0;
+        if (SufficentFunds(bet) == true) {
+
+            x = 0;
         while (x == 0) {
             try {
                 side = Integer.parseInt(JOptionPane.showInputDialog(null, "Side to bet on(1-6): ", "Dice Bet", -1));
@@ -214,8 +258,6 @@ public class Main {
 
             }
         }
-        if (SufficentFunds(bet) == true) {
-
 
             int roll1 = rolldice(1);
             int roll2 = rolldice(1);
@@ -226,20 +268,32 @@ public class Main {
                 winnings += (bet * 10);
                 triple = true;
             } else if (roll1 == side && triple != true)
-                winnings += bet;
+                winnings += bet*10;
             else if (roll2 == side && triple != true)
-                winnings += bet;
+                winnings += bet*10;
             else if (roll3 == side && triple != true)
-                winnings += bet;
+                winnings += bet*10;
             else if (winnings == 0 && triple != true)
-                winnings -= bet;
-
-            if (winnings >= 0)
-                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings);
-            else
-                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings));
+                winnings -= bet*10;
 
             totalBalance += winnings;
+
+            int profit= totalBalance-totalInitial;
+            String s;
+            if(profit>0){
+                s = "You won a total of: ";
+            }
+            else if (profit<0){
+                s = "You lost a total of: ";
+            }
+            else
+            s = "You broke even";
+
+            if (winnings >= 0)
+                JOptionPane.showMessageDialog(null,"You rolled: "+roll1+", "+roll2+", "+roll3+ "\nYou won $" + winnings+"\n"+s+Math.abs(profit));
+            else
+                JOptionPane.showMessageDialog(null, "You rolled: "+roll1+", "+roll2+", "+roll3+"\nYou lost $" + Math.abs(winnings)+"\n"+s+Math.abs(profit));
+
         }
     }
 
@@ -257,7 +311,8 @@ public class Main {
     }
 
     private static boolean SufficentFunds(int bet) {
-        if (totalBalance - bet >= 0)
+        if (totalBalance - bet >= 0 && bet>0 && bet<100)
+            
             return true;
         else
             return false;
