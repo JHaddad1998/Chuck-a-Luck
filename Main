@@ -2,7 +2,7 @@ import javax.swing.*;
 
 /**
  * Created by Joey C on 11/30/2015.
- * Version 0.0.0.7
+ * Version 0.0.0.8 
  */
 public class Main {
     private static int totalInitial = 100;
@@ -312,7 +312,7 @@ public class Main {
 
     private static boolean SufficentFunds(int bet) {
         if (totalBalance - bet >= 0 && bet>0 && bet<100)
-            
+
             return true;
         else
             return false;
@@ -328,8 +328,17 @@ public class Main {
         try {
             int s = Integer.parseInt(JOptionPane.showInputDialog(null, "Are you sure?:\n1.Yes\n2.No", "2"));
             if (s == 1) {
+                String win;
+                if (totalBalance>totalInitial)
+                    win = "You Won with a Net Profit of: ";
+                else if (totalInitial==totalBalance)
+                    win = "You Broke even with a gain of: ";
+                else
+                    win = "You Lost with a Net Loss of: ";
+
                 System.out.print("\n\n                                                                       ------------------------\n" +
-                        "                                                                          Thanks for playing\n                                                                       ------------------------");
+                        "                                                                          Thanks for playing\n                                                                       ------------------------ \n  " +
+                        "                                                             "+win+(Math.abs(totalBalance-totalInitial))+" Dollars");
                 System.exit(0);
             }
         } catch (NumberFormatException e) {
